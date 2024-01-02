@@ -9,8 +9,10 @@ def download_data(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            handle_uploaded_file(form.cleaned_data['file'])
-            return HttpResponse('File uploaded')
+            if handle_uploaded_file(form.cleaned_data['file']):
+                return HttpResponse('File uploaded')
+            else:
+                return HttpResponse('File has no json format')
     else:
         form = UploadFileForm()
         # if uploading_file:

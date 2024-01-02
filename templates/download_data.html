@@ -1,10 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
-    
-<div>
-    <label for="formFileLg" class="form-label">Выберите json-файл, который хотите загрузить</label>
-    <input class="form-control form-control-lg" id="formFileLg" type="file">
-</div>
-<button type="submit" class="btn btn-primary">Submit</button>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col text-center">
+                    <h3>
+                        Загрузка информации из файла
+                    </h3>
+                    <p>
+                        Загрузите фаил с информацией
+                    </p>
+                    <hr>
+                    <form method="post" action="" enctype="multipart/form-data">{% csrf_token %}
+                        <div class="text-center">
+                            {{ form.as_p }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Загрузить фаил
+                        </button>
+                    </form>
+            </div>
+        </div>
+    </div>
+
         
 {% endblock %}
