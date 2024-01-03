@@ -1,7 +1,4 @@
 import os
-
-from django.contrib import messages
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import UploadFileForm
 from load_json_file.models import Data
