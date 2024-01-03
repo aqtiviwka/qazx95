@@ -1,4 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Выгрузка данных с БД</h1>
+    <div class="container">
+        <br><br><br>
+        <table class="table table-bordered" id="example" style="text-align: center;">
+            <thead class="table-success">
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            {% for d in data_list %}
+            <tr>
+                <th>{{ d.name }}</th>
+                <th>{{ d.date }}</th>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}
