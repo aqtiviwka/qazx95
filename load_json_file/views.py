@@ -38,6 +38,7 @@ def everything_is_correct(request):
 
 
 def handle_uploaded_file(f):
+    '''Эта функция позволяет загрузить фаил на сервер, проверить данные на корректность. В случае корректных данных забисать их в БД. В ином случае перенаправит на страницу с ошибкой'''
     with open(f"uploads/{f.name}", "wb+") as destination:
         for chunk in f.chunks():
             destination.write(chunk)
@@ -51,7 +52,7 @@ def handle_uploaded_file(f):
         if all(map(lambda item: ('name' in item) and ('date' in item), data)):
             print('File is correct')
             for d in data:
-                if len(d['name']) >= 50 or not fullmatch('[0-9]{4}-[0-9]{2}-[0-9]{2}_[0-9]{2}:[0-9]{2}', d['date']):
+                if len(d['name']) >= 50 or not fullmatch('\d{4}-(0[1-9]|1[0-2])-([0-2][1-9]|3[01])_(0[0-9]|1[0-9]|2[0-3]):(0[0-9]|[1-5][0-9])', d['date']):
                     print('Data is not valid')
                     dict_data = []
                     return redirect(error_of_format_data)
